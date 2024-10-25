@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Love You More</title>
+  <style>
+    /* Style dasar */
+    body, html {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4, #fad0c4);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Tampilan teks */
+    .love-text {
+      font-size: 3.5rem;
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      animation: fadeIn 2s ease-in-out forwards, heartbeat 1.5s infinite;
+      opacity: 0;
+      z-index: 10; /* Pastikan teks berada di atas bintang */
+    }
+
+    /* Animasi teks */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Bintang animasi */
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkling 3s infinite ease-in-out alternate;
+      z-index: 1; /* Pastikan bintang di belakang teks */
+    }
+
+    @keyframes twinkling {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+  <div class="love-text">I Love You More<br>❤️❤️</div>
+
+  <script>
+    // Membuat bintang animasi
+    function createStar() {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      const { width, height } = document.body.getBoundingClientRect();
+      star.style.left = `${Math.random() * width}px`;
+      star.style.top = `${Math.random() * height}px`;
+      star.style.animationDuration = `${Math.random() * 2 + 1}s`;
+      document.body.appendChild(star);
+
+      setTimeout(() => {
+        star.remove();
+      }, 3000);
+    }
+
+    // Menambah bintang dengan interval yang lebih cepat
+    setInterval(createStar, 50); // Mengurangi interval waktu menjadi 50ms
+  </script>
+</body>
+</html>
